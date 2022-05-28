@@ -6,9 +6,8 @@ set(CMAKE_FIND_ROOT_PATH ${CMAKE_BINARY_DIR})
 
 find_package(cmake_utils REQUIRED)
 
-set(CMAKE_FIND_DEBUG_MODE TRUE)
-
 find_package(zlib REQUIRED)
+set(ZLIB_INCLUDE_DIR ${zlib_INCLUDE_DIRS_DEBUG}${zlib_INCLUDE_DIRS_RELEASE})
 
 include(${cmake_utils_PACKAGE_FOLDER_DEBUG}${cmake_utils_PACKAGE_FOLDER_RELEASE}/global_settings_thirdparty.cmake)
 
@@ -25,9 +24,5 @@ if(IOS AND CMAKE_OSX_ARCHITECTURES MATCHES arm)
 endif()
 
 add_subdirectory(source)
-
-target_link_libraries(png_static
-    zlib::zlib
-)
 
 set_target_properties(png_static PROPERTIES DEBUG_POSTFIX d)

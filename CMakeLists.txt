@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.17)
 
-include(conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
+project(Project)
 
-include(${CONAN_CMAKE_UTILS_ROOT}/global_settings_thirdparty.cmake)
+set(CMAKE_FIND_ROOT_PATH ${CMAKE_BINARY_DIR})
+
+find_package(cmake_utils REQUIRED)
+
+include(${cmake_utils_PACKAGE_FOLDER_DEBUG}${cmake_utils_PACKAGE_FOLDER_RELEASE}/global_settings_thirdparty.cmake)
 
 # Force find_package() to look in the Conan package directories first
 set(CMAKE_FIND_ROOT_PATH ${CONAN_CMAKE_MODULE_PATH} ${CMAKE_FIND_ROOT_PATH})
